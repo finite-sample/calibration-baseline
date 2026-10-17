@@ -1,0 +1,23 @@
+[project]
+name = "calibration-baseline"
+version = "0.1.0"
+description = "Replication code for Regression Calibration as a Baseline for Machine-Learned Covariates"
+requires-python = ">=3.11"
+dependencies = ["numpy>=2.0", "scipy>=1.13", "matplotlib>=3.9", "scikit-learn>=1.5"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "black>=25", "isort>=6", "flake8>=7", "bibtexparser>=1.4,<2"]
+
+[project.urls]
+Repository = "https://github.com/finite-sample/calibration-baseline"
+Paper = "https://gsood.com/research/papers/calibration_baseline.pdf"
+
+[tool.black]
+line-length = 88
+
+[tool.isort]
+profile = "black"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]

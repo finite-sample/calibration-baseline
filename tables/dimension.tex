@@ -1,0 +1,25 @@
+\begin{table}[htbp]\centering\small
+\caption{Calibration complexity and treatment-coefficient error.}
+\label{tab:dimension}
+\begin{tabular}{rrlrrrr}\toprule
+$n_c$ & $q$ & Method & Median error & Run RMSE & $X$ MSE & Failed \\\midrule
+80 & 0 & Oracle & -0.001 & 0.044 & 0.000 & 0 \\
+80 & 0 & Naive & 0.500 & 0.500 & 0.668 & 0 \\
+80 & 0 & Validation only & -0.003 & 0.160 & --- & 0 \\
+80 & 0 & RC: small & -0.001 & 0.173 & 0.523 & 0 \\
+80 & 0 & RC: ridge & -0.104 & 0.229 & 0.526 & 0 \\
+80 & 100 & RC: small & 0.001 & 0.163 & 0.520 & 0 \\
+80 & 100 & RC: expanded & --- & --- & --- & 400 \\
+80 & 100 & RC: ridge & 0.621 & 0.634 & 1.240 & 0 \\
+300 & 0 & Oracle & -0.003 & 0.044 & 0.000 & 0 \\
+300 & 0 & Naive & 0.497 & 0.501 & 0.668 & 0 \\
+300 & 0 & Validation only & -0.004 & 0.086 & --- & 0 \\
+300 & 0 & RC: small & 0.001 & 0.092 & 0.505 & 0 \\
+300 & 0 & RC: ridge & -0.101 & 0.142 & 0.508 & 0 \\
+300 & 100 & RC: small & 0.003 & 0.097 & 0.505 & 0 \\
+300 & 100 & RC: expanded & 0.341 & 0.349 & 0.761 & 0 \\
+300 & 100 & RC: ridge & 0.226 & 0.239 & 0.691 & 0 \\
+\bottomrule\end{tabular}
+\par\smallskip\begin{minipage}{0.96\textwidth}\footnotesize
+Each cell uses 400 independent replications. The full grid is in the replication files. At $q=0$, expanded OLS equals small RC. $q$ counts added calibration predictors; the downstream regression always contains an intercept, treatment, and one true, predicted, or calibrated covariate. $X$ MSE is evaluated on target observations. Validation-only OLS makes no imputation. Failed denotes nonunique OLS fits; no pseudoinverse coefficient is substituted. Oracle OLS uses target labels unavailable to the feasible methods. Run RMSE is descriptive: small OLS calibration has infinite finite-sample population MSE in this design.
+\end{minipage}\end{table}

@@ -1,0 +1,13 @@
+\begin{table}[htbp]\centering\small
+\caption{Uncertainty from estimating the small calibration model.}
+\label{tab:coverage}
+\begin{tabular}{rlrrr}\toprule
+$n_c$ & Interval & Coverage & MC SE & Mean width \\\midrule
+80 & Second stage HC1 & 0.580 & 0.025 & 0.265 \\
+80 & Two-sample bootstrap & 0.932 & 0.013 & 0.635 \\
+300 & Second stage HC1 & 0.825 & 0.019 & 0.263 \\
+300 & Two-sample bootstrap & 0.940 & 0.012 & 0.384 \\
+\bottomrule\end{tabular}
+\par\smallskip\begin{minipage}{0.96\textwidth}\footnotesize
+Nominal coverage is 0.95; 400 independent replications and 399 resamples per bootstrap interval. Both samples are independently resampled and both regressions refit. Second-stage HC1 treats estimated calibration as fixed. No fits failed. These results concern only the fixed, three-parameter OLS calibration.
+\end{minipage}\end{table}

@@ -1,0 +1,67 @@
+{
+  "plan": {
+    "purpose": "Illustrate established regression calibration for a frozen learned covariate; not a novel estimator or a comparison with optimized PPI.",
+    "timing": "Specified during revision after reviewing the previous simulations, before running this replacement design. Not preregistered.",
+    "estimand": "The constant treatment effect tau=0.5 in Y=0.5D+X+epsilon, with X a pretreatment confounder.",
+    "dgp": "X~N(0,2); D=X/2+eta, eta~N(0,0.5); raw proxy S=X+u, u~N(0,1); epsilon~N(0,1); all innovations and extra noise predictors independent.",
+    "prediction": "Ridge(alpha=1) of X on S with intercept, trained once independently and frozen. This deliberately affine learner isolates calibration complexity.",
+    "seed": 20261017,
+    "training_seed": 8675309,
+    "n_training": 1000,
+    "n_target": 1000,
+    "n_calibration": [
+      80,
+      300
+    ],
+    "extra_predictors": [
+      0,
+      20,
+      60,
+      100
+    ],
+    "replications": 400,
+    "inference_replications": 400,
+    "bootstrap_draws": 399,
+    "ridge_penalty": 0.1,
+    "ridge_rule": "Fixed penalty in mean squared loss, after residualizing proxy/noise predictors on intercept and D and standardizing residual columns; intercept and D unpenalized. Not tuned or claimed optimal.",
+    "comparisons": [
+      "Target oracle",
+      "Naive target OLS",
+      "Validation-only OLS",
+      "Small RC",
+      "Expanded OLS RC",
+      "Expanded ridge RC"
+    ],
+    "outcomes": [
+      "Treatment coefficient median signed error, median absolute error, and absolute-error quartiles",
+      "Empirical mean error and empirical RMSE, descriptive only",
+      "Target calibration MSE",
+      "Rank failures",
+      "Low-dimensional interval coverage and mean width"
+    ],
+    "inference": "Separate experiment for small OLS calibration only: second-stage HC1 and independent two-sample percentile bootstrap. All resample failures raise; none silently excluded.",
+    "interpretation": "Noise predictors isolate estimation burden; they do not demonstrate support failure or performance on realistic text/image learners. No universal ordering or high-dimensional inference claim.",
+    "failure_policy": "Record nonunique OLS as a rank failure; report denominators; unexpected errors stop execution. All failed cells have missing performance summaries.",
+    "deviations": [
+      {
+        "date": "2026-10-17",
+        "change": "After the initial replacement run, independent mathematical review established infinite finite-sample MSE for small OLS calibration because its fitted proxy slope has positive density at zero. Replaced RMSE and normal Monte Carlo bars as primary figure quantities with median absolute error and its interquartile range. Retained empirical mean error and RMSE as descriptive run summaries only. No trimming, seed changes, or DGP changes."
+      }
+    ]
+  },
+  "quick": false,
+  "replications": 400,
+  "inference_replications": 400,
+  "bootstrap_draws": 399,
+  "frozen_prediction": {
+    "intercept": -0.015098565241473613,
+    "slope": 0.6717121901590177
+  },
+  "versions": {
+    "python": "3.14.7",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "sklearn": "1.9.1",
+    "matplotlib": "3.11.2"
+  }
+}
